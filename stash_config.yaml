@@ -61,13 +61,14 @@ dns:
       - +.bing.com
       - +.bing.net
       - +.bingapis.com
+
 proxy-providers:
   cc:
-    url: https://subaddress.com # 订阅地址
+    url: https://sub  # 修改成订阅地址
     interval: 3600
 
 proxy-groups:
-  - name: Select
+  - name: 手动选择
     type: select
     include-all: true
     filter: '^(?!.*(我的|流量|官网|时间)).*'
@@ -95,7 +96,6 @@ proxy-groups:
     interval: 30
     include-all: true
     filter: '新'
-
 rule-providers:
   proxy:
     behavior: classical
@@ -107,13 +107,25 @@ rule-providers:
     format: yaml
     url: https://github.com/blackmatrix7/ios_rule_script/raw/refs/heads/master/rule/Clash/China/China_Classical.yaml
     interval: 86400
+  AD:
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash-Classical.yaml
+    interval: 86400
+  AI:
+    behavior: classical
+    format: yaml
+    url: https://raw.githubusercontent.com/lingmacker/Rule/refs/heads/master/stash/AI.yaml
+    interval: 86400
 
 rules:
   - DOMAIN-KEYWORD,diabrowser,美国 # dia浏览器
   - DOMAIN-KEYWORD,micu.hk,DIRECT # micu
+  - RULE-SET,AI,美国
   - RULE-SET,proxy,Auto
   - RULE-SET,china,DIRECT
+  - RULE-SET,AD,REJECT
   - DOMAIN-SUFFIX,cn,DIRECT
   - DOMAIN-KEYWORD,-cn,DIRECT
   - GEOIP,CN,DIRECT
-  - MATCH,Select
+  - MATCH,手动选择
