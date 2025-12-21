@@ -1,0 +1,95 @@
+#default config
+#Date: 2022.06.01
+#Author: Loon
+
+[General]
+ipv6-vif = auto
+mitm-on-wifi-access = false
+disable-stun = true
+sni-sniffing = true
+ip-mode = dual
+skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local,e.crashlynatics.com
+bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
+dns-server = system,119.29.29.29,223.5.5.5,8.8.8.8
+allow-wifi-access = false
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+proxy-test-url = http://www.google.com/generate_204
+internet-test-url = http://wifi.vivo.com.cn/generate_204
+test-timeout = 3
+interface-mode = auto
+resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
+
+[Proxy]
+
+[Remote Proxy]
+
+
+[Proxy Chain]
+
+[Proxy Group]
+Auto = url-test,ALL_Filter,interval = 600,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/rocket(1).png
+Apple = select,US,HK,DIRECT,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/apple.png
+Paypal = select,US,DIRECT,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/paypal.png
+AI = select,US,TW,DIRECT,Auto,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/chatgpt4.0.png
+HK = url-test,HK_Filter,interval = 600,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Hongkong.png
+TW = fallback,TW_Filter,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/taiwan(3).png
+SG = fallback,SG_Filter,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/singapore(1).png
+JP = fallback,JP_Filter,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/zl-icon-jp-flag.png
+KR = fallback,KR_Filter,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/Korea.png
+US = fallback,US_Filter,interval = 600,max-timeout = 3000,img-url = https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/UnitedKingdom(1).png
+
+[Remote Filter]
+ALL_Filter = NameRegex, FilterKey = ".*"
+HK_Filter = NameRegex, FilterKey = "(?i)(港|HK|Hong)"
+TW_Filter = NameRegex, FilterKey = "(?i)(台|TW|Tai)"
+JP_Filter = NameRegex, FilterKey = "(?i)(日本|川日|东京|大阪|泉日|埼玉|沪日|深日|JP|Japan)"
+KR_Filter = NameRegex, FilterKey = "(?i)(KR|Korea|KOR|首尔|韩|韓)"
+US_Filter = NameRegex, FilterKey = "(?i)(美|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|US|United States)"
+SG_Filter = NameRegex, FilterKey = "(?i)(新加坡|坡|狮城|SG|Singapore)"
+
+[Rule]
+DOMAIN-SUFFIX,fbox.com,DIRECT
+DOMAIN-SUFFIX,micu.hk,DIRECT
+
+IP-CIDR,192.168.0.0/16,DIRECT
+IP-CIDR,10.0.0.0/8,DIRECT
+IP-CIDR,172.16.0.0/12,DIRECT
+IP-CIDR,127.0.0.0/8,DIRECT
+
+GEOIP,CN,DIRECT
+FINAL,Auto
+
+[Remote Rule]
+https://github.com/uselibrary/PCDN/raw/2ac5b804fb0b54b1a7e79b79ab0d4d7e780416c5/pcdn.list, policy=REJECT, tag=PCDN, enabled=true
+https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Surge-RULE-SET.list, policy=REJECT, tag=秋风广告规则, enabled=true
+https://raw.githubusercontent.com/lingmacker/Rule/refs/heads/master/loon/AI.list, policy=AI, tag=AI, enabled=true
+https://raw.githubusercontent.com/lingmacker/Rule/refs/heads/master/loon/Apple.list, policy=Apple, tag=Apple, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/PayPal/PayPal.list, policy=Paypal, tag=Paypal, enabled=true
+https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Loon/Proxy/Proxy.list, policy=Auto, tag=Proxy, enabled=true
+https://github.com/blackmatrix7/ios_rule_script/raw/4c7e503d549b9c924c7c2c4bd2eec86cb6e541d0/rule/Loon/China/China_Domain.list, policy=DIRECT, tag=China_Domain.list, enabled=true
+https://github.com/blackmatrix7/ios_rule_script/raw/4c7e503d549b9c924c7c2c4bd2eec86cb6e541d0/rule/Loon/China/China.list, policy=DIRECT, tag=China, enabled=true
+https://github.com/Loon0x00/LoonLiteRules/raw/refs/heads/main/direct/cn.list, policy=DIRECT, tag=GEOIP, enabled=true
+
+[Rewrite]
+
+[Script]
+
+[Plugin]
+https://kelee.one/Tool/Loon/Lpx/Block_HTTPDNS.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/BlockAdvertisers.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/DragonRead_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/FleaMarket_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/YouTube_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/Weixin_Official_Accounts_remove_ads.lpx, enabled=true
+https://kelee.one/Tool/Loon/Lpx/IThome_remove_ads.lpx, enabled=true
+https://whatshub.top/plugin/startingad.plugin, enabled=true
+https://whatshub.top/plugin/znzdw.plugin, enabled=true
+https://github.com/NSRingo/LocationService/releases/latest/download/iRingo.LocationService.plugin, enabled=true
+https://github.com/NSRingo/Siri/releases/latest/download/iRingo.Siri.plugin, enabled=true
+https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.plugin, enabled=true
+https://github.com/NSRingo/GeoServices/releases/latest/download/iRingo.Maps.plugin, enabled=true
+[Mitm]
+ca-p12 =
+ca-passphrase = 3QWY4QPY
+skip-server-cert-verify = false
