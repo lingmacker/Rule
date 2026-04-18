@@ -1,0 +1,79 @@
+# Homebrew
+if [[ -d /opt/homebrew/bin ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# Oh My Zsh
+export ZSH="$HOME/.oh-my-zsh"
+# ZSH_THEME="astro"
+ZSH_THEME=""
+
+plugins=(
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  z
+  docker
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# Env
+export HF_ENDPOINT=https://hf-mirror.com
+
+# OpenClaw
+source "/Users/lingmacker/.openclaw/completions/openclaw.zsh"
+
+# Hermes completion file lives at ~/.oh-my-zsh/custom/completions/_hermes
+# Hermes completion self-heal
+if command -v hermes >/dev/null 2>&1; then
+  export HERMES_COMP_FILE="$HOME/.oh-my-zsh/custom/completions/_hermes"
+  if [[ ! -f "$HERMES_COMP_FILE" ]]; then
+    mkdir -p "$HOME/.oh-my-zsh/custom/completions"
+    hermes completion zsh >| "$HERMES_COMP_FILE" 2>/dev/null
+  fi
+  if [[ -f "$HERMES_COMP_FILE" ]] && grep -q "'(-h --help){-h,--help}" "$HERMES_COMP_FILE"; then
+    python3 - <<'PY2' >/dev/null 2>&1
+from pathlib import Path
+p = Path.home()/'.oh-my-zsh/custom/completions/_hermes'
+text = p.read_text()
+text = text.replace("'(-h --help){-h,--help}[Show help and exit]'", "'(-h --help)'{-h,--help}'[Show help and exit]'")
+text = text.replace("'(-V --version){-V,--version}[Show version and exit]'", "'(-V --version)'{-V,--version}'[Show version and exit]'")
+text = text.replace("'(-p --profile){-p,--profile}[Profile name]:profile:_hermes_profiles'", "'(-p --profile)'{-p,--profile}'[Profile name]:profile:_hermes_profiles'")
+p.write_text(text)
+PY2
+  fi
+fi
+
+
+# Aliases
+alias man='tldr'
+alias ls='lsd'
+
+alias rm='/usr/bin/trash'
+
+alias venv='python3 -m venv'
+
+alias pipx='uv tool'
+alias uvx='uv tool'
+
+alias claw='openclaw'
+
+alias vi='code'
+alias vim='code'
+
+# History
+HISTSIZE=5000
+SAVEHIST=5000
+HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_ALL_DUPS
+setopt SHARE_HISTORY
+
+# brew
+# 隐藏更新提示
+export HOMEBREW_NO_ENV_HINTS=1
+# brew一天只更新一次
+export HOMEBREW_AUTO_UPDATE_SECS=86400
+
+# starship
+eval "$(starship init zsh)"

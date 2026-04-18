@@ -1,0 +1,41 @@
+# 根据 schema 提供自动补全
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Move the directory to the second line
+# format = '[\$](yellow bold) $directory$all'
+format = """
+[\\$](yellow bold) \
+$python\
+$directory\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$git_status\
+$sudo\
+$cmd_duration\
+$line_break\
+$character"""
+
+# 在提示符之间插入空行
+add_newline = false
+
+# 将提示符中的 '❯' 替换为 '➜'
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+
+[git_status]
+disabled = true
+
+[git_branch]
+format = '[$symbol$branch(:$remote_branch)]($style) '
+
+[directory]
+truncate_to_repo = false
+truncation_length = 5
+
+[python]
+symbol = ''
+format = '[${symbol}${pyenv_prefix}(\($virtualenv\) )]($style)'
