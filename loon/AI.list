@@ -14,6 +14,10 @@ DOMAIN-SUFFIX, oaiusercontent.com
 DOMAIN-SUFFIX, openai.com
 DOMAIN-SUFFIX, sora.com
 DOMAIN-SUFFIX, turn.livekit.cloud
+DOMAIN-SUFFIX, featureassets.org
+DOMAIN-SUFFIX, prodregistryv2.org
+DOMAIN-SUFFIX, statsig.com
+DOMAIN-SUFFIX, statsigapi.net
 
 # Apple Intelligence
 DOMAIN-SUFFIX, apple-relay.apple.com
@@ -46,13 +50,18 @@ DOMAIN, generativeai.google
 DOMAIN, generativelanguage.googleapis.com
 DOMAIN, makersuite.google.com
 DOMAIN, proactivebackend-pa.googleapis.com
+DOMAIN, aiplatform.googleapis.com
+DOMAIN, cloudcode-pa.googleapis.com
+DOMAIN, jules.google.com
+DOMAIN-SUFFIX, notebooklm.google
+DOMAIN-SUFFIX, notebooklm.google.com
+DOMAIN-SUFFIX, labs.google
 
 # Anthropic Claude
 DOMAIN-SUFFIX, anthropic.com
 DOMAIN-SUFFIX, claude.ai
+DOMAIN-SUFFIX, claude.com
 DOMAIN-SUFFIX, claudeusercontent.com
-DOMAIN-KEYWORD, claude
-DOMAIN, cdn.usefathom.com,AI
 IP-CIDR, 160.79.104.0/23, no-resolve
 IP-CIDR6, 2607:6bc0::/48, no-resolve
 
@@ -86,3 +95,26 @@ DOMAIN-SUFFIX, trae.ai
 
 # OpenRouter
 DOMAIN-SUFFIX, openrouter.ai
+
+# AI Coding (Cursor / Windsurf / Augment / Kiro)
+DOMAIN-SUFFIX, cursor.com
+DOMAIN-SUFFIX, cursor.sh
+DOMAIN-SUFFIX, cursorapi.com
+DOMAIN-SUFFIX, windsurf.com
+DOMAIN-SUFFIX, codeium.com
+DOMAIN-SUFFIX, augmentcode.com
+DOMAIN-SUFFIX, kiro.dev
+
+# Other AI Services
+DOMAIN-SUFFIX, poe.com
+DOMAIN-SUFFIX, huggingface.co
+DOMAIN-SUFFIX, hf.co
+DOMAIN-SUFFIX, midjourney.com
+DOMAIN-SUFFIX, elevenlabs.io
+DOMAIN-SUFFIX, suno.com
+DOMAIN-SUFFIX, character.ai
+DOMAIN-SUFFIX, groq.com
+DOMAIN-SUFFIX, cohere.com
+DOMAIN-SUFFIX, replicate.com
+DOMAIN-SUFFIX, manus.im
+
