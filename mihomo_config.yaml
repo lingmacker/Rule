@@ -8,7 +8,7 @@ sniffer:
   enable: true
   parse-pure-ip: true
   force-dns-mapping: true
-  override-destination: true
+  override-destination: false
   sniff:
     HTTP:
       ports: [80, 8080-8880]
@@ -23,46 +23,42 @@ dns:
   fake-ip-range: 198.18.0.1/16
 
   default-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://223.5.5.5/dns-query
+    - https://223.6.6.6/dns-query
 
   nameserver:
     - https://dns.alidns.com/dns-query
     - https://doh.pub/dns-query
 
   proxy-server-nameserver:
-    - 223.5.5.5
-    - 119.29.29.29
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
 
 proxy-providers:
   cc:
     type: http
-    url: https://sub
+    url:   # sub url
     interval: 3600
     health-check:
       enable: true
-      url: https://www.gstatic.com/generate_204
+      url: https://cp.cloudflare.com/generate_204
       interval: 300
       lazy: true
       expected-status: '204'
 
 proxy-groups:
-  - name: 手动选择
-    type: select
-    include-all: true
-    filter: '^(?!.*(我的|流量|官网|时间|无法)).*'
   - name: Auto
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
     tolerance: 50
     lazy: true
     expected-status: '204'
     include-all: true
-    filter: '美|港|日|新加坡'
+    filter: '^(?!.*(我的|流量|官网|时间|无法)).*'
   - name: 美国
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
     tolerance: 50
     lazy: true
@@ -71,7 +67,7 @@ proxy-groups:
     filter: '美'
   - name: 香港
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
     tolerance: 50
     lazy: true
@@ -80,7 +76,7 @@ proxy-groups:
     filter: '香港|HK'
   - name: 新加坡
     type: url-test
-    url: https://www.gstatic.com/generate_204
+    url: https://cp.cloudflare.com/generate_204
     interval: 300
     tolerance: 50
     lazy: true
@@ -120,9 +116,9 @@ rule-providers:
     interval: 86400
 
 rules:
-  - DOMAIN-KEYWORD,diabrowser,美国 # dia浏览器
-  - DOMAIN-KEYWORD,micu.hk,DIRECT # micu
-  - RULE-SET,AI,美国
+  - DOMAIN-SUFFIX,micu.hk,DIRECT
+  - DOMAIN,mumu.nie.netease.com,REJECT
+  - RULE-SET,AI,新加坡
   - RULE-SET,Google,美国
   - RULE-SET,proxy,Auto
   - RULE-SET,china,DIRECT
