@@ -1,6 +1,30 @@
 # Apple - 可切换（绑定 select 策略组：DIRECT / 代理）
-# 需放在 AppleDirect.list 之后
-# 已去重；apple.com 后缀已覆盖所有 *.apple.com，故不再单列 DOMAIN 条目
+
+# 推送 APNs
+DOMAIN-SUFFIX,push.apple.com
+DOMAIN,identity.apple.com
+
+# 联网检测（强制门户）
+DOMAIN,captive.apple.com
+
+# 校时
+DOMAIN,time.apple.com
+DOMAIN,time-ios.apple.com
+DOMAIN,time-macos.apple.com
+
+# 设备激活 / eSIM
+DOMAIN,albert.apple.com
+DOMAIN,sq-device.apple.com
+
+# iCloud 专用代理
+DOMAIN,mask.icloud.com
+DOMAIN,mask-h2.icloud.com
+DOMAIN,mask-api.icloud.com
+
+# 国区 iCloud / Apple
+DOMAIN-SUFFIX,icloud.com.cn
+DOMAIN-SUFFIX,apzones.com
+DOMAIN-SUFFIX,apple.com.cn
 
 # Apple 主域名
 DOMAIN-SUFFIX,apple.com
@@ -31,6 +55,17 @@ DOMAIN-SUFFIX,mac.com
 # 关联域（通用链接）
 DOMAIN,app-site-association.networking.apple
 
+# 推送 APNs IP 段
+IP-CIDR,17.249.0.0/16,no-resolve
+IP-CIDR,17.252.0.0/16,no-resolve
+IP-CIDR,17.57.144.0/22,no-resolve
+IP-CIDR,17.188.128.0/18,no-resolve
+IP-CIDR,17.188.20.0/23,no-resolve
+IP-CIDR6,2620:149:a44::/48,no-resolve
+IP-CIDR6,2403:300:a42::/48,no-resolve
+IP-CIDR6,2403:300:a51::/48,no-resolve
+IP-CIDR6,2a01:b740:a42::/48,no-resolve
+
 # 可选：Apple 全部 IP 段（Apple 建议放行 17.0.0.0/8）
-# 启用后，未被 AppleDirect.list 命中的 Apple IP 都会跟随本策略组
+# 启用后，全部 Apple IP 都会跟随本策略组
 # IP-CIDR,17.0.0.0/8,no-resolve
