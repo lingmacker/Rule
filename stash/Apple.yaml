@@ -1,0 +1,34 @@
+# Apple - 可切换（behavior: classical）
+# 规则顺序上需放在 AppleDirect 之后
+payload:
+  # Apple 主域名
+  - DOMAIN-SUFFIX,apple.com
+  - DOMAIN-SUFFIX,apple.co
+  - DOMAIN-SUFFIX,aaplimg.com
+  - DOMAIN-SUFFIX,apple-mapkit.com
+  - DOMAIN-SUFFIX,cdn-apple.com
+  - DOMAIN-SUFFIX,mzstatic.com
+  - DOMAIN-KEYWORD,apple.com.akadns.net
+  - DOMAIN-KEYWORD,apple.com.edgekey.net
+  - DOMAIN-KEYWORD,apple-support.akadns.net
+
+  # App Store / 软件更新 / iTunes
+  - DOMAIN-SUFFIX,itunes.com
+  - DOMAIN,appldnld.apple.com.edgesuite.net
+
+  # TestFlight
+  - DOMAIN-KEYWORD,testflight
+
+  # iCloud
+  - DOMAIN-SUFFIX,icloud.com
+  - DOMAIN-SUFFIX,icloud-content.com
+  - DOMAIN-SUFFIX,apple-cloudkit.com
+  - DOMAIN-SUFFIX,apple-livephotoskit.com
+  - DOMAIN-SUFFIX,me.com
+  - DOMAIN-SUFFIX,mac.com
+
+  # 关联域（通用链接）
+  - DOMAIN,app-site-association.networking.apple
+
+  # 可选：Apple 全部 IP 段（启用后未被 AppleDirect 命中的 Apple IP 都跟随本策略组）
+  # - IP-CIDR,17.0.0.0/8,no-resolve
